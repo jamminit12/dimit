@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gramex - 혁신적인 마인크래프트 1.20.6 서버</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap');
+        
+        :root {
+            --primary-color: #4CAF50;
+            --secondary-color: #2196F3;
+            --accent-color: #FFC107;
+            --background-color: #121212;
+            --text-color: #ffffff;
+        }
+        
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background-color: rgba(18, 18, 18, 0.8);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            top: 0;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .logo {
+            width: 100px;
+            height: auto;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style-type: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+        
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/api/placeholder/1920/1080');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+        
+        .hero-content.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+        }
+        
+        .hero p {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+        
+        .cta-button:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(33, 150, 243, 0.3);
+        }
+        
+        .game-modes {
+            padding: 100px 0;
+            background-color: #1a1a1a;
+        }
+        
+        .game-modes h2 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 50px;
+            color: var(--accent-color);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+        
+        .modes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+        
+        .modes-grid.visible, .game-modes h2.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .mode-card {
+            background-color: #2a2a2a;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .mode-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .mode-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .mode-content {
+            padding: 20px;
+        }
+        
+        .mode-content h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+        
+        .scroll-animation {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 50px;
+            border: 2px solid var(--text-color);
+            border-radius: 15px;
+        }
+        
+        .scroll-animation::before {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 50%;
+            width: 6px;
+            height: 6px;
+            background-color: var(--text-color);
+            border-radius: 50%;
+            transform: translateX(-50%);
+            animation: scroll 2s infinite;
+        }
+        
+        @keyframes scroll {
+            0% { top: 5px; opacity: 1; }
+            100% { top: 30px; opacity: 0; }
+        }
+        
+        /* 추가된 스타일 */
+        .parallax-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('/api/placeholder/1920/1080');
+            background-size: cover;
+            background-position: center;
+            transform: translateZ(-1px) scale(2);
+        }
+        
+        .parallax-content {
+            position: relative;
+            transform: translateZ(0);
+        }
+
+        /* 페이지 길이 추가를 위한 섹션 */
+        .extra-section {
+            height: 100vh;
+            background-color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--text-color);
+            font-size: 2em;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .extra-section:nth-child(odd) {
+            background-color: #444;
+        }
+
+        .extra-section:nth-child(even) {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <img src="/api/placeholder/100/100" alt="Gramex Logo" class="logo">
+            <ul>
+                <li><a href="#home">홈</a></li>
+                <li><a href="#modes">게임 모드</a></li>
+                <li><a href="#about">소개</a></li>
+                <li><a href="#join">참여하기</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section class="hero" id="home">
+            <div class="parallax-bg"></div>
+            <div class="parallax-content">
+                <div class="hero-content">
+                    <h1>Gramex: 혁신적인 마인크래프트 경험</h1>
+                    <p>1.20.6 버전의 최첨단 서버에서 상상을 현실로 만드세요. 다양한 게임 모드, 커스텀 기능, 그리고 열정적인 커뮤니티가 여러분을 기다립니다.</p>
+                    <button class="cta-button" onclick="copyServerAddress()">지금 참여하기</button>
+                </div>
+            </div>
+            <div class="scroll-animation"></div>
+        </section>
+        
+        <section class="game-modes" id="modes">
+            <div class="container">
+                <h2>혁신적인 게임 모드</h2>
+                <div class="modes-grid">
+                    <div class="mode-card">
+                        <div class="mode-image" style="background-image: url('/api/placeholder/400/200');"></div>
+                        <div class="mode-content">
+                            <h3>서바이벌</h3>
+                            <p>클래식한 생존 게임에 현대적인 트위스트를 더했습니다. 새로운 도전과 보상이 기다립니다.</p>
+                        </div>
+                    </div>
+                    <div class="mode-card">
+                        <div class="mode-image" style="background-image: url('/api/placeholder/400/200');"></div>
+                        <div class="mode-content">
+                            <h3>큐브 워페어</h3>
+                            <p>전략적 FPS 경험을 블록 세계에서 즐겨보세요. 팀워크와 기술이 승리의 열쇠입니다.</p>
+                        </div>
+                    </div>
+                    <div class="mode-card">
+                        <div class="mode-image" style="background-image: url('/api/placeholder/400/200');"></div>
+                        <div class="mode-content">
+                            <h3>크리에이티브 플러스</h3>
+                            <p>무한한 가능성의 세계. 고급 도구와 새로운 블록으로 상상력을 자유롭게 펼치세요.</p>
+                        </div>
+                    </div>
+                    <div class="mode-card">
+                        <div class="mode-image" style="background-image: url('/api/placeholder/400/200');"></div>
+                        <div class="mode-content">
+                            <h3>에코 챌린지</h3>
+                            <p>지속 가능한 세계를 만드는 도전. 자원 관리와 환경 보호가 핵심입니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 서버 장점 섹션 -->
+        <section class="extra-section">
+            <div>
+                <h2>서버 장점</h2>
+                <p>Gramex 서버는 안정적인 연결, 친절한 커뮤니티, 그리고 다양한 커스텀 게임 모드를 제공합니다. 모든 플레이어가 즐길 수 있는 최상의 환경을 제공합니다.</p>
+            </div>
+        </section>
+
+        <!-- 서버 규칙 섹션 -->
+        <section class="extra-section">
+            <div>
+                <h2>서버 규칙</h2>
+                <p>모든 플레이어는 서로 존중해야 하며, 불법적인 행동이나 치트 사용은 금지됩니다. 규칙을 준수하여 모두가 즐거운 게임을 할 수 있도록 도와주세요.</p>
+            </div>
+        </section>
+        
+    </main>
+    
+    <footer>
+        <!-- 푸터 내용 -->
+    </footer>
+
+    <script>
+        // 서버 주소 복사 기능
+        function copyServerAddress() {
+            const serverAddress = 'gramex.kro.kr';
+            navigator.clipboard.writeText(serverAddress).then(function() {
+                alert('서버 주소가 클립보드에 복사되었습니다: ' + serverAddress);
+            }, function(err) {
+                alert('서버 주소를 복사하는 중 문제가 발생했습니다.');
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.hero-content, .game-modes h2, .modes-grid');
+            const observerOptions = {
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            fadeElements.forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>
