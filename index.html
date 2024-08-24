@@ -359,19 +359,61 @@
             </div>
         </section>
 
-        <!-- SNS 바로가기 링크 섹션 -->
-        <section class="sns-section">
-            <div class="container">
-                <h2>팔로우하세요!</h2>
-                <p>Gramex의 최신 소식과 업데이트를 확인하려면 SNS를 팔로우하세요.</p>
-                <div class="sns-links">
-                    <a href="https://facebook.com/yourpage" target="_blank" class="sns-icon facebook-icon"></a>
-                    <a href="https://twitter.com/yourprofile" target="_blank" class="sns-icon twitter-icon"></a>
-                    <a href="https://www.instagram.com/gramex_gg?igsh=Ym5jYThtMHR2anF1&utm_source=qr" target="_blank" class="sns-icon instagram-icon"></a>
-                    <a href="https://discord.gg/yourserver" target="_blank" class="sns-icon discord-icon"></a>
-                </div>
-            </div>
-        </section>
+/* SNS 링크 섹션 스타일 */
+.sns-section {
+    padding: 50px 0;
+    background-color: #2a2a2a;
+    color: var(--text-color);
+    text-align: center;
+}
+
+.sns-section h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: var(--accent-color);
+}
+
+.sns-section p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+}
+
+.sns-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.sns-icon {
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.sns-icon:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* SNS 아이콘 */
+.facebook-icon {
+    background-image: url('/path/to/facebook-icon.png');
+}
+
+.twitter-icon {
+    background-image: url('/path/to/twitter-icon.png');
+}
+
+.instagram-icon {
+    background-image: url('/path/to/instagram-icon.png');
+}
+
+.discord-icon {
+    background-image: url('/path/to/discord-icon.png');
+}
 
         
     </main>
