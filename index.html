@@ -347,19 +347,19 @@
 <section class="extra-section" style="background-color: #1a1a1a;">
     <div>
         <h2 style="color: var(--accent-color);">후원하기</h2>
-        <p style="color: var(--text-color);">Dimit 서버를 응원하고 싶다면 후원을 고려해주세요! 여러분의 후원은 서버 운영에 큰 도움이 됩니다.</p>
-        <button class="cta-button" onclick="copyBankAccount()">계좌번호 복사하기</button>
+        <p style="color: var(--text-color);">Dimit 서버에 박제되고 싶다면(?) 후원을 고려해주세요! 여러분의 후원은 서버 운영에 큰 도움이 됩니다. 참고로 일정한 금액이상은 플레이어머리가 서버 광장에 박제 됩니다(?)</p>
+        <button class="cta-button" onclick="copyBankAccount()">계좌번호 복사하기(토스뱅크)</button>
     </div>
 </section>
 
 <script>
     // 계좌번호 복사 기능
     function copyBankAccount() {
-        const bankAccount = '123-4567-8901-23 (은행명)';
+        const bankAccount = '1908-5103-6707';
         navigator.clipboard.writeText(bankAccount).then(function() {
             alert('계좌번호가 클립보드에 복사되었습니다: ' + bankAccount);
         }, function(err) {
-            alert('복사 에러가 발생했습니다. 다시 시도해주세요.');
+            alert('진짜죄송합니다 에러가 발생하였습니다 죄송하지만 다시해주시겠습니까?');
         });
     }
 </script>
