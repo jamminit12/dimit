@@ -348,21 +348,50 @@
     <div>
         <h2 style="color: var(--accent-color);">후원하기</h2>
         <p style="color: var(--text-color);">Dimit 서버에 아주아주아주아주 큰 도움이 되시고 싶으시다면 저의 서버에 후원해주세요! 여러분의 후원은 서버 운영에 큰 도움이 됩니다.*후원금은 도매인 구매 플러그인 구매등에 쓰이고 있습니다*</p>
-        <button class="cta-button" onclick="copyBankAccount()">계좌번호 복사하기(토스뱅크)</button>
+        <button class="cta-button" onclick="copyBankAccount()">계좌번호 복사하기</button>
+        <a href="https://paypal.me/dimitGG?country.x=KR&locale.x=ko_KR" target="_blank" class="paypal-button">
+            <img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/PP_logo_h_200x51.png" alt="PayPal" style="width: 200px; height: auto; display: block; margin-top: 20px; transition: transform 0.3s;">
+        </a>
     </div>
 </section>
 
 <script>
     // 계좌번호 복사 기능
     function copyBankAccount() {
-        const bankAccount = '1908-5103-6707';
+        const bankAccount = '000-1234-5678-90 (은행명)';
         navigator.clipboard.writeText(bankAccount).then(function() {
             alert('계좌번호가 클립보드에 복사되었습니다: ' + bankAccount);
         }, function(err) {
-            alert('진짜죄송합니다 에러가 발생하였습니다 죄송하지만 다시해주시겠습니까?');
+            alert('복사 중 오류가 발생했습니다.');
         });
     }
 </script>
+
+<style>
+    .extra-section .cta-button {
+        display: inline-block;
+        padding: 15px 30px;
+        background-color: var(--primary-color);
+        color: var(--text-color);
+        text-decoration: none;
+        border-radius: 30px;
+        font-weight: bold;
+        transition: all 0.3s;
+        text-transform: uppercase;
+        cursor: pointer;
+        margin-top: 20px;
+    }
+
+    .extra-section .cta-button:hover {
+        background-color: var(--secondary-color);
+        transform: translateY(-3px);
+        box-shadow: 0 4px 8px rgba(33, 150, 243, 0.3);
+    }
+
+    .extra-section .paypal-button img:hover {
+        transform: scale(1.05);
+    }
+</style>
 
         <style>
             .sns-section {
