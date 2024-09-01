@@ -343,13 +343,26 @@
             </div>
         </section>
         
-                       <!-- 아이디어 고갈tlqkf -->
-        <section class="extra-section" style="background-color: #1a1a1a;">
-            <div>
-                <h2 style="color: var(--accent-color);">이거뭐하지</h2>
-                <p style="color: var(--text-color);">Dimit 아이디어 인스타그램 DM부탁부탁</p>
-            </div>
-        </section>
+                       <!-- 후원하기 섹션 -->
+<section class="extra-section" style="background-color: #1a1a1a;">
+    <div>
+        <h2 style="color: var(--accent-color);">후원하기</h2>
+        <p style="color: var(--text-color);">Dimit 서버를 응원하고 싶다면 후원을 고려해주세요! 여러분의 후원은 서버 운영에 큰 도움이 됩니다.</p>
+        <button class="cta-button" onclick="copyBankAccount()">계좌번호 복사하기</button>
+    </div>
+</section>
+
+<script>
+    // 계좌번호 복사 기능
+    function copyBankAccount() {
+        const bankAccount = '123-4567-8901-23 (은행명)';
+        navigator.clipboard.writeText(bankAccount).then(function() {
+            alert('계좌번호가 클립보드에 복사되었습니다: ' + bankAccount);
+        }, function(err) {
+            alert('복사 에러가 발생했습니다. 다시 시도해주세요.');
+        });
+    }
+</script>
 
         <style>
             .sns-section {
